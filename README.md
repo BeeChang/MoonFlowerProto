@@ -30,6 +30,6 @@ XCode : Version 15.0
 **UnsplashPhotoUrls** : data class    
 
 #### Data Repository
-**GardenPlantingRepository** : using GardenPlantingDao 
+**GardenPlantingRepository** : using GardenPlantingDao  
 **PlantRepository** : using PlantDao  
 **UnsplashRepository** : using UnsplashService  
