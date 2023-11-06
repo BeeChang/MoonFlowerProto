@@ -1,8 +1,10 @@
+import org.jetbrains.compose.ExperimentalComposeLibrary
 
 plugins {
     id("org.jetbrains.kotlin.multiplatform")
     id("org.jetbrains.kotlin.native.cocoapods")
     id("com.android.library")
+    id("org.jetbrains.compose")
 
 }
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
@@ -34,6 +36,11 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(compose.runtime)
+                implementation(compose.foundation)
+                implementation(compose.material)
+                @OptIn(ExperimentalComposeLibrary::class)
+                implementation(compose.components.resources)
                 //put your multiplatform dependencies here
             }
         }
