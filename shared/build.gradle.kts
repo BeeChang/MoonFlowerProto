@@ -5,9 +5,9 @@ plugins {
     id("org.jetbrains.kotlin.native.cocoapods")
     id("com.android.library")
     id("org.jetbrains.compose")
-
+    id("com.squareup.sqldelight")
 }
-@OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
+
 kotlin {
     targetHierarchy.default()
 
@@ -41,6 +41,7 @@ kotlin {
                 implementation(compose.material)
                 @OptIn(ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
+                implementation(libs.squareup.sqldelight)
                 //put your multiplatform dependencies here
             }
         }
@@ -49,6 +50,18 @@ kotlin {
                 implementation(libs.kotlinx.test)
             }
         }
+        val androidMain by getting {
+            dependencies {
+                implementation(libs.squareup.sqldelight.android)
+            }
+        }
+
+        val iosMain by getting {
+            dependencies {
+                implementation(libs.squareup.sqldelight.native)
+            }
+        }
+
     }
 }
 
@@ -61,5 +74,12 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+    }
+}
+
+sqldelight {
+    database("AppDatabase") {
+        packageName = "com.example.moonflowerproto.database"
+        sourceFolders = listOf("sqldelight")
     }
 }
